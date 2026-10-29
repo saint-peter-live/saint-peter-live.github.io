@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Links</title>
+<style>
+  :root { --bg:#f6f3ff; --card:#ffffff; --text:#1a1626; --sub:#6b6580; --accent:#9146ff; --line:#e3dcf7;
+    box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg:#0f0d18; --card:#1a1727; --text:#f1eefb; --sub:#a39cbc; --line:#2d2842; } }
+  :root[data-theme="dark"] { --bg:#0f0d18; --card:#1a1727; --text:#f1eefb; --sub:#a39cbc; --line:#2d2842; }
+  html { scroll-padding-top:env(safe-area-inset-top,0px); }
+  body { margin:0; min-height:100vh; background:var(--bg); color:var(--text);
+    font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif; display:flex; justify-content:center; }
+  main { width:100%; max-width:460px; padding:40px 20px 48px; text-align:center; }
+  .avatar { width:96px; height:96px; border-radius:50%; margin:0 auto 14px; background:var(--accent);
+    color:#fff; font-size:40px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  h1 { margin:0 0 6px; font-size:24px; } p { margin:0 0 28px; color:var(--sub); font-size:15px; }
+  a.link { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 12px;
+    padding:16px 20px; background:var(--card); color:var(--text); text-decoration:none; font-weight:600;
+    font-size:17px; border:1px solid var(--line); border-radius:14px; transition:transform .12s, border-color .12s; }
+  a.link:hover, a.link:focus-visible { transform:translateY(-2px); border-color:var(--accent); outline:none; }
+  a.link span.arrow { color:var(--accent); }
+  a.live { background:var(--accent); color:#fff; border-color:var(--accent); }
+  a.live span.arrow { color:#fff; }
+</style>
+</head>
+<body>
+<main>
+  <div class="avatar" id="av">Y</div>
+  <h1 id="name">YourName</h1>
+  <p id="bio">Life is what you make it 😐</p>
+  <div id="links"></div>
+</main>
+<script>
+/* Edit these: name, bio, and the list of links */
+const PROFILE = { name: "Saint Peter", bio: "Life is what you make it 😐" };
+const LINKS = [
+  { label: "Watch me live on Twitch", url: "https://www.twitch.tv/Saint_Peter__", highlight: true },
+  { label: "TikTok",    url: "https://www.tiktok.com/@I_am_Saint_Peter" },
+  { label: "YouTube",   url: "https://www.youtube.com/@Saint_Peter" },
+  { label: "Instagram", url: "https://www.instagram.com/I_am_Saint_Peter" },
+  { label: "Amazon Shop", url: "https://amzn.to/3uAgRBw" }
+];
+document.getElementById("name").textContent = PROFILE.name;
+document.getElementById("bio").textContent = PROFILE.bio;
+document.getElementById("av").textContent = PROFILE.name.charAt(0).toUpperCase();
+document.title = PROFILE.name + " – Links";
+const box = document.getElementById("links");
+LINKS.forEach(l => {
+  const a = document.createElement("a");
+  a.className = "link" + (l.highlight ? " live" : "");
+  a.href = l.url; a.target = "_blank"; a.rel = "noopener noreferrer";
+  const t = document.createElement("span"); t.textContent = l.label;
+  const r = document.createElement("span"); r.className = "arrow"; r.textContent = "→";
+  a.append(t, r); box.appendChild(a);
+});
+</script>
+</body>
+</html>
